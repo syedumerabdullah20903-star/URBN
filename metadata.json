@@ -1,0 +1,6 @@
+{
+  "name": "URBN MEN | Contemporary Men's Streetwear & Apparel",
+  "description": "Premium Pakistani men's fashion storefront inspired by Outfitters with curated men's tees, hoodies, cargo pants, denim, jackets, and accessories, LocalStorage cart & wishlist, and direct WhatsApp order flow.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
