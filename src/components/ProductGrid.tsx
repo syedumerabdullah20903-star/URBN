@@ -284,7 +284,7 @@ export const ProductGrid: React.FC = () => {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4 md:gap-6 w-full min-w-0">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 gap-2.5 sm:gap-4 lg:gap-5 w-full min-w-0">
               {displayedProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

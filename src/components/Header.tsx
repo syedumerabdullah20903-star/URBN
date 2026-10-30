@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Heart, ShoppingBag, Menu, Clock, HelpCircle } from 'lucide-react';
+import { Search, Heart, ShoppingBag, Menu, User, HelpCircle } from 'lucide-react';
 import { useStore } from '../context/StoreContext';
 import { ProductCategory } from '../types';
 import { formatPKR } from '../services/whatsapp';
@@ -110,14 +110,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
               <span className="hidden xl:inline text-xs font-medium text-neutral-500 ml-1">Search</span>
             </button>
 
-            {/* My Orders link */}
+            {/* Account / My Orders link */}
             <button
               onClick={() => setIsOrderHistoryOpen(true)}
               className="hidden lg:flex min-w-[44px] min-h-[44px] items-center justify-center gap-1.5 p-2 text-neutral-700 hover:text-black transition-colors rounded-md hover:bg-neutral-100"
-              title="Track local orders"
+              title="Account & Orders"
+              aria-label="Account & Orders"
             >
-              <Clock className="w-5 h-5" />
-              <span className="text-xs font-medium text-neutral-500">Orders</span>
+              <User className="w-5 h-5" />
+              <span className="text-xs font-medium text-neutral-500">Account</span>
             </button>
 
             {/* Support info */}
