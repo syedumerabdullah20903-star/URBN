@@ -9,6 +9,7 @@ import {
   RefreshCw,
   ShieldCheck,
   ChevronRight,
+  ChevronLeft,
   ZoomIn,
   Check,
   AlertCircle,
@@ -88,6 +89,48 @@ export const ProductDetailModal: React.FC = () => {
   const relatedProducts = PRODUCTS.filter(
     p => p.id !== selectedProduct.id && p.category === selectedProduct.category
   ).slice(0, 3);
+
+  // Touch tracking for mobile image swipe gestures
+  const modalTouchStartX = React.useRef<number | null>(null);
+  const modalTouchStartY = React.useRef<number | null>(null);
+  const isModalSwiping = React.useRef<boolean>(false);
+
+  const handleModalTouchStart = (e: React.TouchEvent) => {
+    modalTouchStartX.current = e.touches[0].clientX;
+    modalTouchStartY.current = e.touches[0].clientY;
+    isModalSwiping.current = false;
+  };
+
+  const handleModalTouchMove = (e: React.TouchEvent) => {
+    if (modalTouchStartX.current === null || modalTouchStartY.current === null) return;
+    const diffX = modalTouchStartX.current - e.touches[0].clientX;
+    const diffY = modalTouchStartY.current - e.touches[0].clientY;
+    if (Math.abs(diffX) > 10 && Math.abs(diffX) > Math.abs(diffY)) {
+      isModalSwiping.current = true;
+    }
+  };
+
+  const handleModalTouchEnd = (e: React.TouchEvent) => {
+    if (modalTouchStartX.current === null) return;
+    const diffX = modalTouchStartX.current - e.changedTouches[0].clientX;
+    const diffY = modalTouchStartY.current ? Math.abs(modalTouchStartY.current - e.changedTouches[0].clientY) : 0;
+
+    if (Math.abs(diffX) > 30 && Math.abs(diffX) > diffY && activeImages.length > 1) {
+      if (diffX > 0) {
+        // swipe left -> next image
+        setActiveImageIdx((prev) => (prev + 1) % activeImages.length);
+      } else {
+        // swipe right -> prev image
+        setActiveImageIdx((prev) => (prev - 1 + activeImages.length) % activeImages.length);
+      }
+    }
+
+    modalTouchStartX.current = null;
+    modalTouchStartY.current = null;
+    setTimeout(() => {
+      isModalSwiping.current = false;
+    }, 100);
+  };
 
   const handleColorSelect = (colorName: string) => {
     setSelectedColor(colorName);
@@ -169,10 +212,17 @@ export const ProductDetailModal: React.FC = () => {
               
               {/* Gallery Column (7 cols) with High-Res Zoom Lightbox Trigger */}
               <div className="lg:col-span-7 space-y-3 sm:space-y-4">
-                {/* Main Image with Zoom click */}
+                {/* Main Image with Zoom click and Mobile Swipe */}
                 <div
-                  onClick={() => setIsLightboxOpen(true)}
-                  className="relative aspect-[3/4] bg-neutral-100 rounded-md sm:rounded-lg overflow-hidden cursor-zoom-in group shadow-xs hover:shadow-md transition-shadow"
+                  onClick={() => {
+                    if (!isModalSwiping.current) {
+                      setIsLightboxOpen(true);
+                    }
+                  }}
+                  onTouchStart={handleModalTouchStart}
+                  onTouchMove={handleModalTouchMove}
+                  onTouchEnd={handleModalTouchEnd}
+                  className="relative aspect-[3/4] bg-neutral-100 rounded-md sm:rounded-lg overflow-hidden cursor-zoom-in group shadow-xs hover:shadow-md transition-shadow touch-pan-y select-none"
                 >
                   <ProductImage
                     src={activeImages[activeImageIdx] || activeImages[0]}
@@ -181,19 +231,79 @@ export const ProductDetailModal: React.FC = () => {
                   />
                   
                   {/* Zoom badge overlay */}
-                  <div className="absolute top-2.5 right-2.5 bg-black/60 hover:bg-black/80 text-white backdrop-blur-md px-2.5 py-1.5 rounded-full flex items-center gap-1.5 text-[11px] font-semibold transition-colors pointer-events-none">
+                  <div className="absolute top-2.5 right-2.5 bg-black/60 hover:bg-black/80 text-white backdrop-blur-md px-2.5 py-1.5 rounded-full flex items-center gap-1.5 text-[11px] font-semibold transition-colors pointer-events-none z-10">
                     <Maximize2 className="w-3.5 h-3.5" />
                     <span className="hidden sm:inline">Inspect Zoom (3.5x)</span>
                   </div>
 
-                  {selectedProduct.discountPercent && (
-                    <div className="absolute top-2.5 left-2.5 bg-red-600 text-white text-[10px] sm:text-xs font-black uppercase px-2 py-0.5 sm:px-2.5 sm:py-1 tracking-wider rounded-xs shadow-xs">
-                      -{selectedProduct.discountPercent}% OFF
+                  {/* Photo counter and swipe hint */}
+                  {activeImages.length > 1 && (
+                    <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5 z-10">
+                      {selectedProduct.discountPercent && (
+                        <div className="bg-red-600 text-white text-[10px] sm:text-xs font-black uppercase px-2 py-0.5 sm:px-2.5 sm:py-1 tracking-wider rounded-xs shadow-xs">
+                          -{selectedProduct.discountPercent}% OFF
+                        </div>
+                      )}
+                      <div className="bg-black/60 backdrop-blur-md text-white text-[10px] font-mono px-2 py-0.5 rounded-full flex items-center gap-1">
+                        <span>{activeImageIdx + 1} / {activeImages.length}</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {!activeImages.length || !activeImages.length || activeImages.length <= 1 ? (
+                    selectedProduct.discountPercent ? (
+                      <div className="absolute top-2.5 left-2.5 bg-red-600 text-white text-[10px] sm:text-xs font-black uppercase px-2 py-0.5 sm:px-2.5 sm:py-1 tracking-wider rounded-xs shadow-xs z-10">
+                        -{selectedProduct.discountPercent}% OFF
+                      </div>
+                    ) : null
+                  ) : null}
+
+                  {/* Prominent Next / Prev Arrows */}
+                  {activeImages.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveImageIdx((prev) => (prev - 1 + activeImages.length) % activeImages.length);
+                        }}
+                        className="absolute left-2.5 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 bg-white/90 hover:bg-white text-neutral-900 rounded-full shadow-md flex items-center justify-center transition-all active:scale-90 z-20"
+                        aria-label="Previous photo"
+                      >
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveImageIdx((prev) => (prev + 1) % activeImages.length);
+                        }}
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 bg-white/90 hover:bg-white text-neutral-900 rounded-full shadow-md flex items-center justify-center transition-all active:scale-90 z-20"
+                        aria-label="Next photo"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                    </>
+                  )}
+
+                  {/* Swipe indicator dots at bottom center */}
+                  {activeImages.length > 1 && (
+                    <div className="absolute bottom-3 inset-x-0 flex items-center justify-center gap-1.5 z-10 pointer-events-none">
+                      {activeImages.map((_, idx) => (
+                        <span
+                          key={idx}
+                          className={`h-1.5 rounded-full transition-all duration-200 ${
+                            idx === activeImageIdx
+                              ? 'w-5 bg-white shadow-xs'
+                              : 'w-1.5 bg-white/60 backdrop-blur-xs'
+                          }`}
+                        />
+                      ))}
                     </div>
                   )}
 
                   {/* Color tag on image */}
-                  <div className="absolute bottom-2.5 left-2.5 bg-white/90 backdrop-blur-md text-neutral-900 text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded shadow-xs uppercase tracking-wider">
+                  <div className="absolute bottom-2.5 left-2.5 bg-white/90 backdrop-blur-md text-neutral-900 text-[10px] sm:text-[11px] font-bold px-2.5 py-1 rounded shadow-xs uppercase tracking-wider z-10">
                     {selectedColor}
                   </div>
                 </div>

@@ -119,7 +119,7 @@ export const ProductGrid: React.FC = () => {
   };
 
   return (
-    <section id="catalog-section" className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-10">
+    <section id="catalog-section" className="max-w-7xl mx-auto px-2.5 sm:px-6 lg:px-8 py-5 sm:py-10 w-full min-w-0 overflow-hidden">
       
       {/* Category Header Banner */}
       <div className="mb-6 sm:mb-8 pb-4 sm:pb-6 border-b border-neutral-200">
@@ -253,7 +253,7 @@ export const ProductGrid: React.FC = () => {
       )}
 
       {/* Main Grid + Sidebar Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start w-full min-w-0">
         
         {/* Desktop Sidebar (3 cols) */}
         <aside className="hidden lg:block lg:col-span-3 sticky top-24 bg-white p-5 rounded-lg border border-neutral-200/80 shadow-xs">
@@ -266,7 +266,7 @@ export const ProductGrid: React.FC = () => {
         </aside>
 
         {/* Product Cards Grid (9 cols on desktop, full width on mobile) */}
-        <main className="lg:col-span-9">
+        <main className="lg:col-span-9 w-full min-w-0">
           {displayedProducts.length === 0 ? (
             <div className="bg-white rounded-lg border border-neutral-200 p-12 text-center space-y-3">
               <Sparkles className="w-8 h-8 text-neutral-400 mx-auto" />
@@ -284,7 +284,7 @@ export const ProductGrid: React.FC = () => {
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 sm:gap-4 md:gap-6 w-full min-w-0">
               {displayedProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

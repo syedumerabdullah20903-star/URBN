@@ -57,7 +57,7 @@ const StorefrontContent: React.FC = () => {
               Recently Viewed Styles
             </h3>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4 md:gap-6 w-full min-w-0">
             {recentViews.slice(0, 4).map((prod) => (
               <ProductCard key={prod.id} product={prod} />
             ))}

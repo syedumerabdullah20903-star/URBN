@@ -112,30 +112,53 @@ export const ImageZoomLightbox: React.FC<ImageZoomLightboxProps> = ({
     setIsDragging(false);
   };
 
-  // Touch handlers for mobile pan
+  // Touch handlers for mobile pan (when zoomed) or swipe next/prev (when scale === 1)
+  const swipeTouchStartX = useRef<number | null>(null);
+  const swipeTouchStartY = useRef<number | null>(null);
+
   const handleTouchStart = (e: React.TouchEvent) => {
-    if (scale <= 1 || e.touches.length !== 1) return;
-    setIsDragging(true);
-    setDragStart({
-      x: e.touches[0].clientX - position.x,
-      y: e.touches[0].clientY - position.y,
-    });
+    if (e.touches.length !== 1) return;
+    if (scale > 1) {
+      setIsDragging(true);
+      setDragStart({
+        x: e.touches[0].clientX - position.x,
+        y: e.touches[0].clientY - position.y,
+      });
+    } else {
+      swipeTouchStartX.current = e.touches[0].clientX;
+      swipeTouchStartY.current = e.touches[0].clientY;
+    }
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging || scale <= 1 || e.touches.length !== 1) return;
-    const maxX = (scale - 1) * 260;
-    const maxY = (scale - 1) * 260;
-    const newX = e.touches[0].clientX - dragStart.x;
-    const newY = e.touches[0].clientY - dragStart.y;
-    setPosition({
-      x: Math.max(-maxX, Math.min(maxX, newX)),
-      y: Math.max(-maxY, Math.min(maxY, newY)),
-    });
+    if (scale > 1 && isDragging && e.touches.length === 1) {
+      const maxX = (scale - 1) * 260;
+      const maxY = (scale - 1) * 260;
+      const newX = e.touches[0].clientX - dragStart.x;
+      const newY = e.touches[0].clientY - dragStart.y;
+      setPosition({
+        x: Math.max(-maxX, Math.min(maxX, newX)),
+        y: Math.max(-maxY, Math.min(maxY, newY)),
+      });
+    }
   };
 
-  const handleTouchEnd = () => {
-    setIsDragging(false);
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (scale > 1) {
+      setIsDragging(false);
+    } else if (swipeTouchStartX.current !== null && e.changedTouches.length > 0) {
+      const diffX = swipeTouchStartX.current - e.changedTouches[0].clientX;
+      const diffY = swipeTouchStartY.current ? Math.abs(swipeTouchStartY.current - e.changedTouches[0].clientY) : 0;
+      if (Math.abs(diffX) > 30 && Math.abs(diffX) > diffY) {
+        if (diffX > 0 && activeIndex < images.length - 1) {
+          onIndexChange(activeIndex + 1);
+        } else if (diffX < 0 && activeIndex > 0) {
+          onIndexChange(activeIndex - 1);
+        }
+      }
+      swipeTouchStartX.current = null;
+      swipeTouchStartY.current = null;
+    }
   };
 
   // Double click/tap toggle 2.5x zoom
