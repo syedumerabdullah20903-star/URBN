@@ -41,16 +41,16 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
         <div className="flex items-center justify-between gap-4 sm:gap-8 h-14 sm:h-18">
           
           {/* Mobile Menu Button & Brand Zone */}
-          <div className="flex items-center gap-2 sm:gap-4">
+          <div className="flex items-center gap-1.5 sm:gap-4 min-w-0">
             <button
               onClick={onOpenMobileMenu}
-              className="md:hidden p-2 -ml-1 text-neutral-800 hover:text-black focus:outline-none focus:ring-2 focus:ring-neutral-900 rounded"
+              className="md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center -ml-2 text-neutral-800 hover:text-black focus:outline-none focus:ring-2 focus:ring-neutral-900 rounded-md transition-colors"
               aria-label="Open navigation menu"
             >
               <Menu className="w-5 h-5" />
             </button>
 
-            {/* Brand Title (One line wordmark) */}
+            {/* Brand Title (One line wordmark with responsive text size) */}
             <a
               href="#"
               onClick={(e) => {
@@ -58,7 +58,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
                 setCurrentCategory('all');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="text-xl sm:text-3xl font-extrabold tracking-tighter text-black uppercase font-display whitespace-nowrap shrink-0 hover:opacity-90 transition-opacity"
+              className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tighter text-black uppercase font-display whitespace-nowrap shrink-0 hover:opacity-90 transition-opacity"
             >
               URBN<span className="text-neutral-400 font-light">·</span>MEN
             </a>
@@ -98,22 +98,22 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
           </nav>
 
           {/* Zone 3: Actions (Search, Wishlist, Bag, Order History) */}
-          <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+          <div className="flex items-center gap-1 sm:gap-3 shrink-0">
             {/* Search Button */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="p-2 text-neutral-700 hover:text-black transition-colors rounded hover:bg-neutral-100 flex items-center gap-1.5"
+              className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2 text-neutral-700 hover:text-black transition-colors rounded-md hover:bg-neutral-100"
               aria-label="Search catalog"
               title="Search styles (Press /)"
             >
               <Search className="w-5 h-5" />
-              <span className="hidden xl:inline text-xs font-medium text-neutral-500">Search</span>
+              <span className="hidden xl:inline text-xs font-medium text-neutral-500 ml-1">Search</span>
             </button>
 
             {/* My Orders link */}
             <button
               onClick={() => setIsOrderHistoryOpen(true)}
-              className="hidden lg:flex items-center gap-1.5 p-2 text-neutral-700 hover:text-black transition-colors rounded hover:bg-neutral-100"
+              className="hidden lg:flex min-w-[44px] min-h-[44px] items-center justify-center gap-1.5 p-2 text-neutral-700 hover:text-black transition-colors rounded-md hover:bg-neutral-100"
               title="Track local orders"
             >
               <Clock className="w-5 h-5" />
@@ -123,7 +123,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
             {/* Support info */}
             <button
               onClick={() => openPolicies('delivery')}
-              className="hidden xl:flex items-center gap-1 p-2 text-neutral-700 hover:text-black transition-colors rounded hover:bg-neutral-100"
+              className="hidden xl:flex min-w-[44px] min-h-[44px] items-center justify-center gap-1 p-2 text-neutral-700 hover:text-black transition-colors rounded-md hover:bg-neutral-100"
               title="Shipping & Customer Support"
             >
               <HelpCircle className="w-5 h-5" />
@@ -133,12 +133,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
             {/* Wishlist Button */}
             <button
               onClick={() => setIsWishlistOpen(true)}
-              className="relative p-2 text-neutral-700 hover:text-black transition-colors rounded hover:bg-neutral-100"
+              className="relative min-w-[44px] min-h-[44px] flex items-center justify-center p-2 text-neutral-700 hover:text-black transition-colors rounded-md hover:bg-neutral-100"
               aria-label={`Wishlist (${wishlist.length} saved)`}
             >
               <Heart className="w-5 h-5" />
               {wishlist.length > 0 && (
-                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-neutral-900 text-white text-[10px] font-bold flex items-center justify-center tabular-nums">
+                <span className="absolute top-1 right-1 w-4 h-4 rounded-full bg-neutral-900 text-white text-[10px] font-bold flex items-center justify-center tabular-nums">
                   {wishlist.length}
                 </span>
               )}
@@ -147,7 +147,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenMobileMenu }) => {
             {/* Shopping Cart Button */}
             <button
               onClick={() => setIsCartOpen(true)}
-              className="flex items-center gap-2 py-2 px-3 sm:px-3.5 bg-neutral-950 text-white rounded-md hover:bg-neutral-800 transition-colors shadow-sm"
+              className="min-h-[44px] flex items-center gap-2 py-2 px-3 sm:px-3.5 bg-neutral-950 text-white rounded-md hover:bg-neutral-800 transition-colors shadow-sm"
               aria-label={`Shopping bag (${cartCount} items)`}
             >
               <div className="relative">

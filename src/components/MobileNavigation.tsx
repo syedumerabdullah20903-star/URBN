@@ -56,7 +56,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onCl
           </span>
           <button
             onClick={onClose}
-            className="p-1.5 text-neutral-600 hover:text-black rounded-md hover:bg-neutral-100"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-600 hover:text-black rounded-md hover:bg-neutral-100 transition-colors"
             aria-label="Close navigation"
           >
             <X className="w-5 h-5" />
@@ -101,8 +101,8 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onCl
           })}
 
           {/* Quick Action Links */}
-          <div className="pt-4 pb-2">
-            <div className="px-4 py-1 text-[11px] font-bold text-neutral-400 uppercase tracking-widest">
+          <div className="pt-3 pb-2">
+            <div className="px-4 py-1.5 text-[11px] font-bold text-neutral-400 uppercase tracking-widest">
               My Shopping
             </div>
             <button
@@ -110,7 +110,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onCl
                 onClose();
                 setIsWishlistOpen(true);
               }}
-              className="w-full text-left px-5 py-3 flex items-center justify-between text-neutral-700 hover:bg-neutral-50 text-sm"
+              className="w-full text-left px-5 py-3.5 min-h-[44px] flex items-center justify-between text-neutral-700 hover:bg-neutral-50 active:bg-neutral-100 text-sm"
             >
               <div className="flex items-center gap-3">
                 <Heart className="w-4 h-4 text-neutral-500" />
@@ -126,7 +126,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onCl
                 onClose();
                 setIsOrderHistoryOpen(true);
               }}
-              className="w-full text-left px-5 py-3 flex items-center justify-between text-neutral-700 hover:bg-neutral-50 text-sm"
+              className="w-full text-left px-5 py-3.5 min-h-[44px] flex items-center justify-between text-neutral-700 hover:bg-neutral-50 active:bg-neutral-100 text-sm"
             >
               <div className="flex items-center gap-3">
                 <Clock className="w-4 h-4 text-neutral-500" />
@@ -137,8 +137,8 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onCl
           </div>
 
           {/* Policies & Assistance */}
-          <div className="pt-3 pb-2">
-            <div className="px-4 py-1 text-[11px] font-bold text-neutral-400 uppercase tracking-widest">
+          <div className="pt-2 pb-2">
+            <div className="px-4 py-1.5 text-[11px] font-bold text-neutral-400 uppercase tracking-widest">
               Assistance & Stores
             </div>
             <button
@@ -146,9 +146,9 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onCl
                 onClose();
                 openPolicies('delivery');
               }}
-              className="w-full text-left px-5 py-2.5 flex items-center gap-3 text-neutral-600 hover:bg-neutral-50 text-xs"
+              className="w-full text-left px-5 py-3 min-h-[44px] flex items-center gap-3 text-neutral-600 hover:bg-neutral-50 text-xs"
             >
-              <Truck className="w-3.5 h-3.5 text-neutral-500" />
+              <Truck className="w-3.5 h-3.5 text-neutral-500 shrink-0" />
               <span>Nationwide Delivery & COD</span>
             </button>
             <button
@@ -156,9 +156,9 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onCl
                 onClose();
                 openPolicies('returns');
               }}
-              className="w-full text-left px-5 py-2.5 flex items-center gap-3 text-neutral-600 hover:bg-neutral-50 text-xs"
+              className="w-full text-left px-5 py-3 min-h-[44px] flex items-center gap-3 text-neutral-600 hover:bg-neutral-50 text-xs"
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-neutral-500" />
+              <ShieldCheck className="w-3.5 h-3.5 text-neutral-500 shrink-0" />
               <span>14-Day Exchange Policy</span>
             </button>
             <button
@@ -166,21 +166,21 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({ isOpen, onCl
                 onClose();
                 openPolicies('stores');
               }}
-              className="w-full text-left px-5 py-2.5 flex items-center gap-3 text-neutral-600 hover:bg-neutral-50 text-xs"
+              className="w-full text-left px-5 py-3 min-h-[44px] flex items-center gap-3 text-neutral-600 hover:bg-neutral-50 text-xs"
             >
-              <MapPin className="w-3.5 h-3.5 text-neutral-500" />
+              <MapPin className="w-3.5 h-3.5 text-neutral-500 shrink-0" />
               <span>Flagship Store Outlets</span>
             </button>
           </div>
         </div>
 
         {/* Footer with WhatsApp Help Button */}
-        <div className="p-4 border-t border-neutral-200 bg-neutral-50 space-y-2">
+        <div className="p-4 border-t border-neutral-200 bg-neutral-50 space-y-2 pb-[calc(env(safe-area-inset-bottom,0px)+1rem)]">
           <a
             href={supportUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full flex items-center justify-center gap-2 py-3 bg-emerald-600 text-white rounded-md text-xs font-bold uppercase tracking-wider hover:bg-emerald-700 transition-colors shadow-sm"
+            className="w-full min-h-[48px] flex items-center justify-center gap-2 py-3 bg-emerald-600 text-white rounded-md text-xs font-bold uppercase tracking-wider hover:bg-emerald-700 active:scale-98 transition-all shadow-sm"
           >
             <MessageSquare className="w-4 h-4" />
             <span>WhatsApp: +92 311 1398618</span>

@@ -30,7 +30,7 @@ const StorefrontContent: React.FC = () => {
   const { recentViews } = useStore();
 
   return (
-    <div className="min-h-screen flex flex-col bg-neutral-50 text-neutral-900 selection:bg-neutral-900 selection:text-white pb-16 md:pb-0">
+    <div className="min-h-screen flex flex-col bg-neutral-50 text-neutral-900 selection:bg-neutral-900 selection:text-white pb-[calc(env(safe-area-inset-bottom,0px)+5rem)] md:pb-0 overflow-x-hidden">
       {/* 1. Top Announcement Ticker */}
       <AnnouncementBar />
 

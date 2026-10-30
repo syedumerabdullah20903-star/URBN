@@ -33,7 +33,7 @@ export const OrderConfirmationModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 overflow-y-auto">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/75 backdrop-blur-xs transition-opacity"
@@ -44,16 +44,16 @@ export const OrderConfirmationModal: React.FC = () => {
       <div className="relative w-full max-w-2xl bg-white rounded-lg shadow-2xl overflow-hidden z-10 flex flex-col my-auto max-h-[94vh]">
         
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-200 bg-white">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-neutral-200 bg-white">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse" />
-            <h2 className="text-base font-bold uppercase tracking-tight text-neutral-900 font-display">
+            <h2 className="text-sm sm:text-base font-bold uppercase tracking-tight text-neutral-900 font-display">
               Order Pending Confirmation
             </h2>
           </div>
           <button
             onClick={() => setActiveOrderConfirmation(null)}
-            className="p-1.5 text-neutral-400 hover:text-black rounded-md hover:bg-neutral-100 transition-colors"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-500 hover:text-black rounded-md hover:bg-neutral-100 transition-colors"
             aria-label="Close"
           >
             <X className="w-5 h-5" />
@@ -135,7 +135,7 @@ export const OrderConfirmationModal: React.FC = () => {
           <div className="space-y-3">
             <button
               onClick={handleOpenWhatsApp}
-              className="w-full py-3.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-md text-xs font-bold uppercase tracking-wider transition-colors shadow-md flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full min-h-[48px] py-3.5 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-md text-xs font-bold uppercase tracking-wider transition-all active:scale-98 shadow-md flex items-center justify-center gap-2 cursor-pointer"
             >
               <MessageSquare className="w-4 h-4" />
               <span>LAUNCH WHATSAPP TO SEND ORDER</span>
@@ -143,7 +143,7 @@ export const OrderConfirmationModal: React.FC = () => {
 
             <button
               onClick={handleCopyMessage}
-              className={`w-full py-3 px-4 border rounded-md text-xs font-bold uppercase tracking-wider transition-colors flex items-center justify-center gap-2 cursor-pointer ${
+              className={`w-full min-h-[44px] py-3 px-4 border rounded-md text-xs font-bold uppercase tracking-wider transition-all active:scale-98 flex items-center justify-center gap-2 cursor-pointer ${
                 copied
                   ? 'bg-neutral-900 text-white border-neutral-900'
                   : 'border-neutral-300 hover:border-black text-neutral-800 bg-white'

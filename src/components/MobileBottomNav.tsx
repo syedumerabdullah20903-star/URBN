@@ -25,63 +25,72 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({ onOpenCategori
   return (
     <nav
       aria-label="Mobile Navigation"
-      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-neutral-200 py-2 px-3 flex items-center justify-around shadow-lg safe-area-bottom"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-neutral-200 py-1.5 px-2 flex items-center justify-around shadow-xl safe-area-bottom"
     >
       {/* Home */}
       <button
         onClick={handleHomeClick}
-        className={`flex flex-col items-center justify-center flex-1 py-1 transition-colors ${
-          currentCategory === 'all' ? 'text-black font-bold' : 'text-neutral-500 hover:text-black'
+        className={`min-h-[48px] min-w-[48px] flex flex-col items-center justify-center flex-1 py-1 active:scale-95 transition-all ${
+          currentCategory === 'all' ? 'text-black font-extrabold' : 'text-neutral-500 hover:text-black'
         }`}
+        aria-label="Home"
       >
         <Home className="w-5 h-5" />
-        <span className="text-[10px] mt-1 tracking-wider uppercase">Home</span>
+        <span className="text-[10px] mt-0.5 tracking-wider uppercase font-medium">Home</span>
       </button>
 
       {/* Categories / Shop */}
       <button
         onClick={onOpenCategories}
-        className="flex flex-col items-center justify-center flex-1 py-1 text-neutral-500 hover:text-black transition-colors"
+        className="min-h-[48px] min-w-[48px] flex flex-col items-center justify-center flex-1 py-1 text-neutral-500 hover:text-black active:scale-95 transition-all"
+        aria-label="Categories"
       >
         <Grid className="w-5 h-5" />
-        <span className="text-[10px] mt-1 tracking-wider uppercase">Categories</span>
+        <span className="text-[10px] mt-0.5 tracking-wider uppercase font-medium">Shop</span>
       </button>
 
       {/* Search */}
       <button
         onClick={() => setIsSearchOpen(true)}
-        className="flex flex-col items-center justify-center flex-1 py-1 text-neutral-500 hover:text-black transition-colors"
+        className="min-h-[48px] min-w-[48px] flex flex-col items-center justify-center flex-1 py-1 text-neutral-500 hover:text-black active:scale-95 transition-all"
+        aria-label="Search Catalog"
       >
         <Search className="w-5 h-5" />
-        <span className="text-[10px] mt-1 tracking-wider uppercase">Search</span>
+        <span className="text-[10px] mt-0.5 tracking-wider uppercase font-medium">Search</span>
       </button>
 
       {/* Wishlist */}
       <button
         onClick={() => setIsWishlistOpen(true)}
-        className="relative flex flex-col items-center justify-center flex-1 py-1 text-neutral-500 hover:text-black transition-colors"
+        className="relative min-h-[48px] min-w-[48px] flex flex-col items-center justify-center flex-1 py-1 text-neutral-500 hover:text-black active:scale-95 transition-all"
+        aria-label={`Wishlist (${wishlist.length} saved)`}
       >
-        <Heart className="w-5 h-5" />
-        {wishlist.length > 0 && (
-          <span className="absolute top-0 right-4 w-4 h-4 bg-neutral-900 text-white text-[9px] font-bold rounded-full flex items-center justify-center tabular-nums">
-            {wishlist.length}
-          </span>
-        )}
-        <span className="text-[10px] mt-1 tracking-wider uppercase">Saved</span>
+        <div className="relative">
+          <Heart className="w-5 h-5" />
+          {wishlist.length > 0 && (
+            <span className="absolute -top-1.5 -right-2 w-4 h-4 bg-neutral-900 text-white text-[9px] font-bold rounded-full flex items-center justify-center tabular-nums">
+              {wishlist.length}
+            </span>
+          )}
+        </div>
+        <span className="text-[10px] mt-0.5 tracking-wider uppercase font-medium">Saved</span>
       </button>
 
       {/* Cart Bag */}
       <button
         onClick={() => setIsCartOpen(true)}
-        className="relative flex flex-col items-center justify-center flex-1 py-1 text-neutral-500 hover:text-black transition-colors"
+        className="relative min-h-[48px] min-w-[48px] flex flex-col items-center justify-center flex-1 py-1 text-neutral-500 hover:text-black active:scale-95 transition-all"
+        aria-label={`Shopping bag (${cartCount} items)`}
       >
-        <ShoppingBag className="w-5 h-5" />
-        {cartCount > 0 && (
-          <span className="absolute top-0 right-4 w-4 h-4 bg-amber-400 text-black text-[9px] font-extrabold rounded-full flex items-center justify-center tabular-nums shadow-xs">
-            {cartCount}
-          </span>
-        )}
-        <span className="text-[10px] mt-1 tracking-wider uppercase font-semibold">Bag</span>
+        <div className="relative">
+          <ShoppingBag className="w-5 h-5" />
+          {cartCount > 0 && (
+            <span className="absolute -top-1.5 -right-2.5 w-4.5 h-4.5 bg-amber-400 text-neutral-950 text-[9px] font-extrabold rounded-full flex items-center justify-center tabular-nums shadow-xs">
+              {cartCount}
+            </span>
+          )}
+        </div>
+        <span className="text-[10px] mt-0.5 tracking-wider uppercase font-bold text-neutral-900">Bag</span>
       </button>
     </nav>
   );

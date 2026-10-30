@@ -54,7 +54,7 @@ export const WishlistDrawer: React.FC = () => {
           </div>
           <button
             onClick={() => setIsWishlistOpen(false)}
-            className="p-1.5 text-neutral-400 hover:text-black rounded-md hover:bg-neutral-100 transition-colors"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-500 hover:text-black rounded-md hover:bg-neutral-100 transition-colors"
             aria-label="Close wishlist"
           >
             <X className="w-5 h-5" />
@@ -99,10 +99,10 @@ export const WishlistDrawer: React.FC = () => {
                     </h4>
                     <button
                       onClick={() => toggleWishlist(product.id)}
-                      className="text-neutral-400 hover:text-red-600 transition-colors p-1"
+                      className="min-w-[36px] min-h-[36px] flex items-center justify-center text-neutral-400 hover:text-red-600 transition-colors -mr-1 -mt-1 rounded-md"
                       title="Remove from wishlist"
                     >
-                      <Trash2 className="w-3.5 h-3.5" />
+                      <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
 
@@ -113,9 +113,9 @@ export const WishlistDrawer: React.FC = () => {
                   <div className="pt-2">
                     <button
                       onClick={() => handleMoveToCart(product)}
-                      className="py-1.5 px-3 bg-neutral-900 text-white rounded text-xs font-bold uppercase tracking-wider hover:bg-black transition-colors flex items-center gap-1.5"
+                      className="min-h-[40px] py-2 px-3.5 bg-neutral-900 text-white rounded text-xs font-bold uppercase tracking-wider hover:bg-black active:scale-95 transition-all flex items-center gap-1.5"
                     >
-                      <ShoppingBag className="w-3 h-3" />
+                      <ShoppingBag className="w-3.5 h-3.5" />
                       <span>{product.sizes.length === 1 ? 'Move to Bag' : 'Select Size'}</span>
                     </button>
                   </div>
@@ -127,10 +127,10 @@ export const WishlistDrawer: React.FC = () => {
 
         {/* Footer */}
         {savedProducts.length > 0 && (
-          <div className="p-4 border-t border-neutral-200 bg-neutral-50">
+          <div className="p-4 border-t border-neutral-200 bg-neutral-50 pb-[calc(env(safe-area-inset-bottom,0px)+1rem)]">
             <button
               onClick={clearWishlist}
-              className="w-full py-2.5 text-xs text-neutral-500 hover:text-red-600 font-bold uppercase tracking-wider transition-colors"
+              className="w-full min-h-[44px] py-2.5 text-xs text-neutral-600 hover:text-red-600 font-bold uppercase tracking-wider transition-colors"
             >
               Clear Entire Wishlist
             </button>

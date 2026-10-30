@@ -73,7 +73,7 @@ export const CartDrawer: React.FC = () => {
           </div>
           <button
             onClick={() => setIsCartOpen(false)}
-            className="p-1.5 text-neutral-400 hover:text-black rounded-md hover:bg-neutral-100 transition-colors"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-500 hover:text-black rounded-md hover:bg-neutral-100 transition-colors"
             aria-label="Close cart drawer"
           >
             <X className="w-5 h-5" />
@@ -153,10 +153,11 @@ export const CartDrawer: React.FC = () => {
                     </h4>
                     <button
                       onClick={() => removeFromCart(item.id)}
-                      className="text-neutral-400 hover:text-red-600 transition-colors p-1"
+                      className="min-w-[36px] min-h-[36px] flex items-center justify-center text-neutral-400 hover:text-red-600 transition-colors -mr-1 -mt-1 rounded-md"
                       title="Remove item"
+                      aria-label={`Remove ${item.title}`}
                     >
-                      <Trash2 className="w-3.5 h-3.5" />
+                      <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
 
@@ -169,21 +170,21 @@ export const CartDrawer: React.FC = () => {
 
                   {/* Quantity Stepper & Price */}
                   <div className="pt-2 flex items-center justify-between">
-                    <div className="flex items-center border border-neutral-200 rounded bg-neutral-50">
+                    <div className="flex items-center border border-neutral-200 rounded-md bg-neutral-50">
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                        className="px-2.5 py-1 text-xs font-bold text-neutral-600 hover:bg-neutral-200"
+                        className="min-w-[36px] min-h-[36px] flex items-center justify-center text-xs font-bold text-neutral-700 hover:bg-neutral-200 active:bg-neutral-300 transition-colors"
                         aria-label="Decrease quantity"
                       >
                         -
                       </button>
-                      <span className="px-3 py-1 text-xs font-bold tabular-nums font-mono">
+                      <span className="px-3 min-h-[36px] flex items-center justify-center text-xs font-bold tabular-nums font-mono">
                         {item.quantity}
                       </span>
                       <button
                         onClick={() => updateQuantity(item.id, item.quantity + 1)}
                         disabled={item.quantity >= item.maxStock}
-                        className="px-2.5 py-1 text-xs font-bold text-neutral-600 hover:bg-neutral-200 disabled:opacity-30"
+                        className="min-w-[36px] min-h-[36px] flex items-center justify-center text-xs font-bold text-neutral-700 hover:bg-neutral-200 active:bg-neutral-300 disabled:opacity-30 transition-colors"
                         aria-label="Increase quantity"
                       >
                         +
@@ -280,13 +281,13 @@ export const CartDrawer: React.FC = () => {
             {/* Checkout Button */}
             <button
               onClick={handleProceedToCheckout}
-              className="w-full py-3.5 px-4 bg-neutral-950 text-white rounded-md text-xs font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors shadow-md flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full min-h-[48px] py-3.5 px-4 bg-neutral-950 hover:bg-neutral-800 text-white rounded-md text-xs font-bold uppercase tracking-wider active:scale-98 transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>PROCEED TO CHECKOUT</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 
-            <p className="text-[10px] text-center text-neutral-400">
+            <p className="text-[10px] text-center text-neutral-400 pb-[calc(env(safe-area-inset-bottom,0px)+0.25rem)]">
               Cash on Delivery (COD) & Instant WhatsApp verification available.
             </p>
           </div>

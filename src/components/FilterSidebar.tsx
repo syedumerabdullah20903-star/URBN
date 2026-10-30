@@ -105,9 +105,9 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <button
                 key={sz}
                 onClick={() => toggleSize(sz)}
-                className={`py-1.5 px-2 rounded text-xs font-semibold transition-colors ${
+                className={`min-h-[40px] py-2 px-2 rounded text-xs font-semibold active:scale-95 transition-all ${
                   isSelected
-                    ? 'bg-neutral-950 text-white font-bold'
+                    ? 'bg-neutral-950 text-white font-bold shadow-xs'
                     : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-800'
                 }`}
               >
@@ -128,17 +128,17 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <button
                 key={col.name}
                 onClick={() => toggleColor(col.name)}
-                className={`flex items-center gap-1.5 py-1 px-2.5 rounded border transition-colors ${
+                className={`min-h-[36px] flex items-center gap-1.5 py-1.5 px-3 rounded border active:scale-95 transition-all ${
                   isSelected
-                    ? 'border-neutral-900 bg-neutral-900 text-white'
+                    ? 'border-neutral-900 bg-neutral-900 text-white shadow-xs'
                     : 'border-neutral-200 hover:border-neutral-400 bg-white text-neutral-800'
                 }`}
               >
                 <span
                   style={{ backgroundColor: col.hex }}
-                  className="w-2.5 h-2.5 rounded-full border border-neutral-300"
+                  className="w-3 h-3 rounded-full border border-neutral-300 shrink-0"
                 />
-                <span className="text-[11px]">{col.name}</span>
+                <span className="text-[11px] font-medium">{col.name}</span>
               </button>
             );
           })}

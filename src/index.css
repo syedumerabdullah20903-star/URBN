@@ -6,9 +6,18 @@
 }
 
 @layer base {
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+
   body {
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
 
@@ -16,12 +25,26 @@
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
+
+  /* Prevent 300ms mobile tap delay & unwanted pinch-zoom triggers on buttons */
+  button, a, input, select, textarea {
+    touch-action: manipulation;
+  }
+}
+
+/* Mobile Safe Area Inset Helpers */
+.safe-area-bottom {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));
+}
+
+.safe-area-top {
+  padding-top: max(0.25rem, env(safe-area-inset-top, 0px));
 }
 
 /* Custom scrollbar for clean high-fashion feel */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 ::-webkit-scrollbar-track {
   background: #f5f5f5;
@@ -33,3 +56,4 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #a3a3a3;
 }
+

@@ -264,7 +264,7 @@ export const ProductDetailModal: React.FC = () => {
                     <span className="text-neutral-500 uppercase">Available Colours:</span>
                     <span className="text-neutral-900 font-bold">{selectedColor}</span>
                   </div>
-                  <div className="flex items-center gap-2 sm:gap-2.5">
+                  <div className="flex items-center gap-2 sm:gap-2.5 flex-wrap">
                     {selectedProduct.colors.map((color) => {
                       const isSelected = selectedColor === color.name;
                       return (
@@ -272,7 +272,7 @@ export const ProductDetailModal: React.FC = () => {
                           key={color.name}
                           onClick={() => handleColorSelect(color.name)}
                           style={{ backgroundColor: color.hex }}
-                          className={`w-9 h-9 rounded-full border-2 transition-transform relative flex items-center justify-center cursor-pointer ${
+                          className={`min-w-[42px] min-h-[42px] rounded-full border-2 transition-transform relative flex items-center justify-center cursor-pointer ${
                             isSelected ? 'border-neutral-950 scale-110 shadow-sm ring-2 ring-neutral-950/20' : 'border-neutral-300 hover:scale-105'
                           }`}
                           title={color.name}
@@ -297,7 +297,7 @@ export const ProductDetailModal: React.FC = () => {
                     <span className="text-neutral-500 uppercase">Select Size:</span>
                     <button
                       onClick={() => setIsSizeGuideOpen(true)}
-                      className="text-neutral-700 hover:text-black underline flex items-center gap-1 cursor-pointer py-1"
+                      className="min-h-[36px] text-neutral-700 hover:text-black underline flex items-center gap-1 cursor-pointer py-1"
                     >
                       <Ruler className="w-3.5 h-3.5" />
                       <span>Size Guide</span>
@@ -314,7 +314,7 @@ export const ProductDetailModal: React.FC = () => {
                             setSelectedSize(size);
                             setValidationError('');
                           }}
-                          className={`h-11 sm:h-10 rounded text-xs font-bold transition-all flex items-center justify-center ${
+                          className={`min-h-[44px] rounded text-xs font-bold transition-all flex items-center justify-center cursor-pointer ${
                             isSelected
                               ? 'bg-neutral-950 text-white shadow-xs'
                               : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-800'
@@ -512,24 +512,24 @@ export const ProductDetailModal: React.FC = () => {
           </div>
 
           {/* STICKY BOTTOM BAR FOR MOBILE: Thumb-friendly 1-tap checkout */}
-          <div className="sm:hidden absolute bottom-0 inset-x-0 bg-white/95 backdrop-blur-md p-3 border-t border-neutral-200 flex items-center gap-2 z-30 shadow-lg">
+          <div className="sm:hidden absolute bottom-0 inset-x-0 bg-white/95 backdrop-blur-md p-3 pb-[calc(env(safe-area-inset-bottom,0px)+0.75rem)] border-t border-neutral-200 flex items-center gap-2 z-30 shadow-2xl safe-area-bottom">
             <button
               onClick={handleAddToCart}
               disabled={Boolean(isOutOfStock)}
-              className="flex-1 py-3.5 px-3 bg-neutral-950 text-white rounded-md text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 active:bg-neutral-800 disabled:bg-neutral-300"
+              className="flex-1 min-h-[48px] py-3 px-2.5 bg-neutral-950 text-white rounded-md text-[11px] xs:text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 active:scale-98 transition-all disabled:bg-neutral-300 disabled:cursor-not-allowed cursor-pointer"
             >
-              <ShoppingBag className="w-4 h-4" />
-              <span>{isOutOfStock ? 'SOLD OUT' : `ADD TO BAG · PKR ${formatPKR(selectedProduct.price * quantity)}`}</span>
+              <ShoppingBag className="w-4 h-4 shrink-0" />
+              <span className="truncate">{isOutOfStock ? 'SOLD OUT' : `ADD TO BAG · PKR ${formatPKR(selectedProduct.price * quantity)}`}</span>
             </button>
 
             <button
               onClick={handleBuyNow}
               disabled={Boolean(isOutOfStock)}
-              className="py-3.5 px-3 bg-amber-400 text-neutral-950 rounded-md text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1 active:bg-amber-300 disabled:opacity-50"
-              title="Instant Checkout"
+              className="min-h-[48px] py-3 px-3.5 bg-amber-400 hover:bg-amber-300 text-neutral-950 rounded-md text-[11px] xs:text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 active:scale-98 transition-all disabled:opacity-50 cursor-pointer shadow-xs shrink-0"
+              title="Instant WhatsApp Checkout"
             >
-              <Zap className="w-4 h-4" />
-              <span>BUY NOW</span>
+              <Zap className="w-4 h-4 shrink-0" />
+              <span>WHATSAPP ORDER</span>
             </button>
           </div>
 

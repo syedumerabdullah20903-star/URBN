@@ -22,7 +22,7 @@ export const OrderHistoryModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 overflow-y-auto">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/75 backdrop-blur-xs transition-opacity"
@@ -30,19 +30,19 @@ export const OrderHistoryModal: React.FC = () => {
       />
 
       {/* Modal Dialog */}
-      <div className="relative w-full max-w-3xl bg-white rounded-lg shadow-2xl overflow-hidden z-10 flex flex-col my-auto max-h-[90vh]">
+      <div className="relative w-full max-w-3xl bg-white rounded-lg shadow-2xl overflow-hidden z-10 flex flex-col my-auto max-h-[92vh]">
         
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-200 bg-white">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-neutral-200 bg-white">
           <div className="flex items-center gap-2">
             <Clock className="w-5 h-5 text-neutral-800" />
-            <h2 className="text-base font-bold uppercase tracking-tight text-neutral-900 font-display">
+            <h2 className="text-sm sm:text-base font-bold uppercase tracking-tight text-neutral-900 font-display">
               My Local Order History ({orderHistory.length})
             </h2>
           </div>
           <button
             onClick={() => setIsOrderHistoryOpen(false)}
-            className="p-1.5 text-neutral-400 hover:text-black rounded-md hover:bg-neutral-100 transition-colors"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-500 hover:text-black rounded-md hover:bg-neutral-100 transition-colors"
             aria-label="Close order history"
           >
             <X className="w-5 h-5" />

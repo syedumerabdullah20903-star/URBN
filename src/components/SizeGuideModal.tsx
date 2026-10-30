@@ -31,24 +31,24 @@ export const SizeGuideModal: React.FC<SizeGuideModalProps> = ({ isOpen, onClose 
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4">
       {/* Backdrop */}
       <div className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity" onClick={onClose} />
 
       {/* Modal Dialog */}
-      <div className="relative w-full max-w-xl bg-white rounded-lg shadow-2xl p-6 z-10 max-h-[90vh] overflow-y-auto">
+      <div className="relative w-full max-w-xl bg-white rounded-lg shadow-2xl p-4 sm:p-6 z-10 max-h-[90vh] overflow-y-auto">
         
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-neutral-200">
+        <div className="flex items-center justify-between pb-3 sm:pb-4 border-b border-neutral-200">
           <div className="flex items-center gap-2">
             <Ruler className="w-5 h-5 text-neutral-800" />
-            <h3 className="text-lg font-bold uppercase tracking-tight text-neutral-900 font-display">
+            <h3 className="text-base sm:text-lg font-bold uppercase tracking-tight text-neutral-900 font-display">
               Men's Size & Measurement Guide
             </h3>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 text-neutral-400 hover:text-black rounded-md hover:bg-neutral-100"
+            className="min-w-[40px] min-h-[40px] flex items-center justify-center text-neutral-400 hover:text-black rounded-md hover:bg-neutral-100 transition-colors"
             aria-label="Close size guide"
           >
             <X className="w-5 h-5" />

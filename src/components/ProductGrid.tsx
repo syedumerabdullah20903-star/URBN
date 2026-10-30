@@ -137,14 +137,14 @@ export const ProductGrid: React.FC = () => {
           </div>
 
           {/* Quick Department Buttons */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs w-full md:w-auto -mx-3 px-3 md:mx-0 md:px-0">
             {CATEGORIES_META.map((cat) => {
               const isActive = currentCategory === cat.id;
               return (
                 <button
                   key={cat.id}
                   onClick={() => setCurrentCategory(cat.id as any)}
-                  className={`py-1.5 px-3 rounded-md uppercase font-bold tracking-wider whitespace-nowrap transition-colors ${
+                  className={`min-h-[40px] py-2 px-3.5 rounded-md uppercase font-bold tracking-wider whitespace-nowrap transition-colors shrink-0 ${
                     isActive
                       ? 'bg-neutral-900 text-white shadow-xs'
                       : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-700'
@@ -159,30 +159,30 @@ export const ProductGrid: React.FC = () => {
       </div>
 
       {/* Grid Toolbar: Filter Toggle on Mobile, Active count, Sorting */}
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-6 pb-4 border-b border-neutral-100">
+      <div className="flex items-center justify-between gap-3 mb-5 pb-3 border-b border-neutral-100">
         
         {/* Left: Mobile Filter Button + Desktop Count */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3">
           <button
             onClick={() => setIsMobileFilterOpen(true)}
-            className="lg:hidden flex items-center gap-2 py-2 px-3.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-900 text-xs font-bold rounded-md uppercase tracking-wider"
+            className="lg:hidden min-h-[44px] flex items-center gap-2 py-2 px-3.5 bg-neutral-900 text-white hover:bg-black text-xs font-bold rounded-md uppercase tracking-wider active:scale-95 transition-all shadow-xs"
           >
             <SlidersHorizontal className="w-4 h-4" />
             <span>Filters</span>
           </button>
 
           <span className="text-xs font-medium text-neutral-500">
-            Showing <strong className="text-neutral-900 tabular-nums">{sortedProducts.length}</strong> styles
+            <strong className="text-neutral-900 tabular-nums">{sortedProducts.length}</strong> styles
           </span>
         </div>
 
         {/* Right: Sorting Select */}
-        <div className="flex items-center gap-2 text-xs">
-          <span className="text-neutral-500 font-medium">Sort by:</span>
+        <div className="flex items-center gap-1.5 sm:gap-2 text-xs">
+          <span className="hidden sm:inline text-neutral-500 font-medium">Sort:</span>
           <select
             value={sortOption}
             onChange={(e) => setSortOption(e.target.value as SortOption)}
-            className="py-1.5 px-3 bg-white border border-neutral-200 rounded-md text-neutral-900 font-semibold focus:outline-none focus:ring-1 focus:ring-neutral-900 cursor-pointer text-xs"
+            className="min-h-[44px] py-2 px-3 bg-white border border-neutral-200 rounded-md text-neutral-900 font-semibold focus:outline-none focus:ring-1 focus:ring-neutral-900 cursor-pointer text-xs"
           >
             <option value="featured">Featured Picks</option>
             <option value="newest">New Arrivals</option>

@@ -29,21 +29,21 @@ export const AnnouncementBar: React.FC = () => {
           </button>
         </div>
 
-        <div className="flex-1 md:flex-initial text-center text-[11px] font-medium tracking-widest text-neutral-200">
+        <div className="flex-1 md:flex-initial text-center text-[10px] sm:text-[11px] font-medium tracking-widest text-neutral-200 truncate px-1">
           <span className="text-amber-400 font-semibold mr-1.5">DROP '26:</span>
-          <span>Cash on Delivery Available Nationwide across Pakistan</span>
+          <span>Cash on Delivery Nationwide</span>
         </div>
 
-        <div className="flex items-center gap-4 text-[11px]">
+        <div className="flex items-center gap-3 text-[11px] shrink-0">
           <button 
             onClick={() => openPolicies('stores')}
             className="hidden sm:inline-block text-neutral-400 hover:text-white transition-colors underline decoration-neutral-700 underline-offset-4"
           >
-            Store Locations
+            Stores
           </button>
           <button
             onClick={() => setIsVisible(false)}
-            className="text-neutral-400 hover:text-white p-0.5 rounded transition-colors"
+            className="min-w-[32px] min-h-[32px] flex items-center justify-center text-neutral-400 hover:text-white rounded transition-colors"
             aria-label="Dismiss announcement"
           >
             <X className="w-3.5 h-3.5" />

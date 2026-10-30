@@ -35,7 +35,7 @@ export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
           </span>
           <button
             onClick={onClose}
-            className="p-1.5 text-neutral-500 hover:text-black rounded"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-500 hover:text-black rounded-md hover:bg-neutral-100 transition-colors"
             aria-label="Close filters"
           >
             <X className="w-5 h-5" />
@@ -51,16 +51,16 @@ export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
           />
         </div>
 
-        <div className="p-4 border-t border-neutral-200 bg-neutral-50 flex gap-2">
+        <div className="p-4 border-t border-neutral-200 bg-neutral-50 flex gap-2.5 pb-[calc(env(safe-area-inset-bottom,0px)+1rem)]">
           <button
             onClick={onResetFilters}
-            className="w-1/3 py-3 text-xs font-bold uppercase tracking-wider border border-neutral-300 rounded text-neutral-700 hover:bg-neutral-100"
+            className="w-1/3 min-h-[46px] py-3 text-xs font-bold uppercase tracking-wider border border-neutral-300 rounded text-neutral-700 hover:bg-neutral-100 active:scale-95 transition-all"
           >
             Reset
           </button>
           <button
             onClick={onClose}
-            className="w-2/3 py-3 text-xs font-bold uppercase tracking-wider bg-black text-white rounded hover:bg-neutral-800"
+            className="w-2/3 min-h-[46px] py-3 text-xs font-bold uppercase tracking-wider bg-black text-white rounded hover:bg-neutral-800 active:scale-95 transition-all shadow-xs"
           >
             Apply Filters
           </button>

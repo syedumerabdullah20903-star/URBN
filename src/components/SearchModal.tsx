@@ -77,7 +77,7 @@ export const SearchModal: React.FC = () => {
   if (!isSearchOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-8 sm:pt-16 px-4">
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-3 sm:pt-16 px-2 sm:px-4">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/70 backdrop-blur-xs transition-opacity"
@@ -85,10 +85,10 @@ export const SearchModal: React.FC = () => {
       />
 
       {/* Search Modal Panel */}
-      <div className="relative w-full max-w-2xl bg-white rounded-lg shadow-2xl overflow-hidden z-10 flex flex-col max-h-[85vh]">
+      <div className="relative w-full max-w-2xl bg-white rounded-xl sm:rounded-lg shadow-2xl overflow-hidden z-10 flex flex-col max-h-[90vh] sm:max-h-[85vh]">
         {/* Input Bar */}
-        <div className="flex items-center px-4 py-3.5 border-b border-neutral-200">
-          <Search className="w-5 h-5 text-neutral-400 mr-3 shrink-0" />
+        <div className="flex items-center px-3 sm:px-4 py-3 sm:py-3.5 border-b border-neutral-200">
+          <Search className="w-5 h-5 text-neutral-400 mr-2.5 shrink-0" />
           <input
             ref={inputRef}
             type="text"
@@ -99,13 +99,13 @@ export const SearchModal: React.FC = () => {
                 addSearchQuery(query.trim());
               }
             }}
-            placeholder="Search by product name, SKU, category, or tag (e.g. 'Cargo', 'Oversized')..."
+            placeholder="Search by product name, SKU, or tag..."
             className="w-full bg-transparent text-sm sm:text-base text-neutral-900 placeholder-neutral-400 focus:outline-none"
           />
           {query && (
             <button
               onClick={() => setQuery('')}
-              className="p-1 text-neutral-400 hover:text-black mr-2"
+              className="min-w-[36px] min-h-[36px] flex items-center justify-center text-neutral-400 hover:text-black mr-1"
               aria-label="Clear query"
             >
               <X className="w-4 h-4" />
@@ -113,9 +113,11 @@ export const SearchModal: React.FC = () => {
           )}
           <button
             onClick={() => setIsSearchOpen(false)}
-            className="text-xs font-semibold uppercase tracking-wider text-neutral-500 hover:text-black px-2 py-1 rounded hover:bg-neutral-100"
+            className="min-w-[40px] min-h-[40px] flex items-center justify-center text-xs font-bold uppercase tracking-wider text-neutral-500 hover:text-black px-2 py-1 rounded hover:bg-neutral-100"
+            aria-label="Close search"
           >
-            ESC
+            <X className="w-5 h-5 sm:hidden" />
+            <span className="hidden sm:inline">ESC</span>
           </button>
         </div>
 

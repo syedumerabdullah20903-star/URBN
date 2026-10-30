@@ -46,7 +46,7 @@ export const HeroBanner: React.FC = () => {
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-[1.08] font-display text-balance">
+            <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-white leading-[1.1] font-display text-balance">
               URBAN UTILITY. <br />
               <span className="text-neutral-300 font-light">MENS STREETWEAR.</span>
             </h1>
@@ -57,10 +57,10 @@ export const HeroBanner: React.FC = () => {
             </p>
 
             {/* CTAs (Full width on mobile, inline on desktop) */}
-            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-4">
+            <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4">
               <button
                 onClick={() => handleShopCategory('all')}
-                className="py-3.5 px-7 bg-white text-black text-xs font-bold uppercase tracking-wider rounded-md hover:bg-neutral-200 transition-colors shadow-lg flex items-center justify-center gap-2 group cursor-pointer"
+                className="min-h-[46px] py-3 px-6 bg-white text-black text-xs font-bold uppercase tracking-wider rounded-md hover:bg-neutral-200 active:scale-98 transition-all shadow-lg flex items-center justify-center gap-2 group cursor-pointer"
               >
                 <span>EXPLORE ALL MENSWEAR</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -68,14 +68,14 @@ export const HeroBanner: React.FC = () => {
 
               <button
                 onClick={() => handleShopCategory('hoodies')}
-                className="py-3.5 px-7 bg-transparent border-2 border-white/80 text-white text-xs font-bold uppercase tracking-wider rounded-md hover:bg-white hover:text-black transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                className="min-h-[46px] py-3 px-6 bg-transparent border-2 border-white/80 text-white text-xs font-bold uppercase tracking-wider rounded-md hover:bg-white hover:text-black active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>SHOP HOODIES & FLEECE</span>
               </button>
 
               <button
                 onClick={() => handleShopCategory('cargos')}
-                className="py-3.5 px-7 bg-white/10 backdrop-blur-xs border border-white/20 text-neutral-200 hover:text-white text-xs font-bold uppercase tracking-wider rounded-md hover:bg-white/20 transition-colors flex items-center justify-center gap-2 cursor-pointer"
+                className="min-h-[46px] py-3 px-6 bg-white/10 backdrop-blur-xs border border-white/20 text-neutral-200 hover:text-white text-xs font-bold uppercase tracking-wider rounded-md hover:bg-white/20 active:scale-98 transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>SHOP CARGOS</span>
               </button>

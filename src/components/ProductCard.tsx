@@ -65,21 +65,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         )}
 
-        {/* Wishlist Button (Enlarged touch target for mobile) */}
+        {/* Wishlist Button (Enlarged 40px touch target for mobile) */}
         <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();
             toggleWishlist(product.id);
           }}
-          className={`absolute top-1.5 right-1.5 sm:top-2 sm:right-2 p-2 sm:p-2 rounded-full backdrop-blur-md transition-colors ${
+          className={`absolute top-1 right-1 sm:top-2 sm:right-2 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-full backdrop-blur-md transition-colors ${
             isSaved
               ? 'bg-red-50 text-red-600'
-              : 'bg-white/85 hover:bg-white text-neutral-600 hover:text-black shadow-xs'
+              : 'bg-white/90 hover:bg-white text-neutral-600 hover:text-black shadow-xs'
           }`}
           aria-label={isSaved ? 'Remove from wishlist' : 'Save to wishlist'}
         >
-          <Heart className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isSaved ? 'fill-red-600' : ''}`} />
+          <Heart className={`w-4 h-4 ${isSaved ? 'fill-red-600' : ''}`} />
         </button>
 
         {/* Quick Add Overlay on Desktop Hover */}
@@ -109,29 +109,29 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       </div>
 
       {/* Product Details */}
-      <div className="p-2.5 sm:p-3.5 flex flex-col flex-1 justify-between gap-1.5 sm:gap-2">
+      <div className="p-2 sm:p-3 flex flex-col flex-1 justify-between gap-1 sm:gap-2">
         <div className="space-y-0.5 sm:space-y-1">
           {/* Category & SKU */}
-          <div className="text-[10px] sm:text-[11px] font-semibold text-neutral-400 uppercase tracking-wider flex items-center gap-1 sm:gap-1.5">
+          <div className="text-[9px] sm:text-[11px] font-semibold text-neutral-400 uppercase tracking-wider flex items-center gap-1 sm:gap-1.5">
             <span>{product.category}</span>
             <span aria-hidden="true">·</span>
             <span className="font-mono truncate">{product.sku}</span>
           </div>
 
           {/* Title */}
-          <h3 className="text-xs sm:text-sm font-semibold text-neutral-900 leading-snug line-clamp-2 group-hover:text-neutral-600 transition-colors">
+          <h3 className="text-[11px] sm:text-xs md:text-sm font-semibold text-neutral-900 leading-snug line-clamp-2 group-hover:text-neutral-600 transition-colors">
             {product.title}
           </h3>
         </div>
 
         {/* Price & Swatches row */}
-        <div className="pt-1 flex items-end justify-between gap-1.5 border-t border-neutral-100">
-          <div className="flex flex-wrap items-baseline gap-1 sm:gap-2">
-            <span className="text-xs sm:text-sm md:text-base font-bold text-neutral-900 tabular-nums font-mono whitespace-nowrap">
+        <div className="pt-1 flex items-end justify-between gap-1 border-t border-neutral-100">
+          <div className="flex flex-wrap items-baseline gap-1 sm:gap-1.5 min-w-0">
+            <span className="text-[11px] sm:text-sm md:text-base font-bold text-neutral-900 tabular-nums font-mono whitespace-nowrap">
               PKR {formatPKR(product.price)}
             </span>
             {product.originalPrice && (
-              <span className="text-[10px] sm:text-xs text-neutral-400 line-through tabular-nums font-mono whitespace-nowrap">
+              <span className="text-[9px] sm:text-xs text-neutral-400 line-through tabular-nums font-mono whitespace-nowrap">
                 {formatPKR(product.originalPrice)}
               </span>
             )}
@@ -139,7 +139,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
           {/* Interactive Color Swatches: Click switches product card photo directly! */}
           {product.colors && product.colors.length > 0 && (
-            <div className="flex items-center gap-1 shrink-0">
+            <div className="flex items-center gap-0.5 shrink-0">
               {product.colors.slice(0, 3).map((col) => {
                 const isSelected = selectedColor === col.name;
                 return (
@@ -151,17 +151,21 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                       e.stopPropagation();
                       setSelectedColor(col.name);
                     }}
-                    style={{ backgroundColor: col.hex }}
-                    className={`w-3.5 h-3.5 sm:w-3 sm:h-3 rounded-full border transition-all cursor-pointer ${
-                      isSelected
-                        ? 'border-neutral-900 ring-1 ring-black scale-125 shadow-xs'
-                        : 'border-neutral-300 hover:scale-115'
-                    }`}
-                  />
+                    className="min-w-[26px] min-h-[26px] sm:min-w-[24px] sm:min-h-[24px] flex items-center justify-center p-0.5"
+                  >
+                    <span
+                      style={{ backgroundColor: col.hex }}
+                      className={`w-3.5 h-3.5 sm:w-3 sm:h-3 rounded-full border transition-all inline-block ${
+                        isSelected
+                          ? 'border-neutral-900 ring-1 ring-black scale-125 shadow-xs'
+                          : 'border-neutral-300 hover:scale-110'
+                      }`}
+                    />
+                  </button>
                 );
               })}
               {product.colors.length > 3 && (
-                <span className="text-[9px] text-neutral-400">+{product.colors.length - 3}</span>
+                <span className="text-[8px] sm:text-[9px] text-neutral-400 font-mono">+{product.colors.length - 3}</span>
               )}
             </div>
           )}

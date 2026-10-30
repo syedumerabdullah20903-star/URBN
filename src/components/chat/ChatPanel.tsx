@@ -209,15 +209,15 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
         <div className="flex items-center gap-1 text-neutral-400">
           <button
             onClick={handleClearChat}
-            className="p-1.5 hover:text-white rounded hover:bg-neutral-800 transition-colors"
+            className="min-w-[38px] min-h-[38px] flex items-center justify-center hover:text-white rounded hover:bg-neutral-800 transition-colors"
             title="Reset conversation"
             aria-label="Reset conversation"
           >
-            <RotateCcw className="w-3.5 h-3.5" />
+            <RotateCcw className="w-4 h-4" />
           </button>
           <button
             onClick={onMinimize}
-            className="p-1.5 hover:text-white rounded hover:bg-neutral-800 transition-colors"
+            className="min-w-[38px] min-h-[38px] flex items-center justify-center hover:text-white rounded hover:bg-neutral-800 transition-colors"
             title="Minimize chat"
             aria-label="Minimize chat"
           >
@@ -225,7 +225,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
           </button>
           <button
             onClick={onClose}
-            className="p-1.5 hover:text-white rounded hover:bg-neutral-800 transition-colors"
+            className="min-w-[38px] min-h-[38px] flex items-center justify-center hover:text-white rounded hover:bg-neutral-800 transition-colors"
             title="Close chat"
             aria-label="Close chat"
           >
@@ -355,7 +355,7 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
       </div>
 
       {/* Input Area */}
-      <div className="p-3 bg-white border-t border-neutral-200 shrink-0">
+      <div className="p-3 bg-white border-t border-neutral-200 shrink-0 safe-area-bottom pb-[calc(env(safe-area-inset-bottom,0px)+0.75rem)]">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -369,14 +369,14 @@ export const ChatPanel: React.FC<ChatPanelProps> = ({
             value={inputMessage}
             onChange={(e) => setInputMessage(e.target.value)}
             placeholder="Ask about products, fabrics, delivery, or sizing..."
-            className="flex-1 py-2.5 px-3.5 bg-neutral-100 border border-neutral-200 rounded-lg text-xs sm:text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:bg-white focus:border-neutral-900 transition-colors"
+            className="flex-1 min-h-[44px] py-2.5 px-3.5 bg-neutral-100 border border-neutral-200 rounded-lg text-xs sm:text-sm text-neutral-900 placeholder-neutral-400 focus:outline-none focus:bg-white focus:border-neutral-900 transition-colors"
           />
 
           <button
             type="submit"
             disabled={!inputMessage.trim() || isLoading}
             aria-label="Send message"
-            className="p-2.5 bg-neutral-950 text-white rounded-lg hover:bg-black transition-colors disabled:opacity-40 disabled:cursor-not-allowed shadow-xs shrink-0 cursor-pointer"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center bg-neutral-950 text-white rounded-lg hover:bg-black active:scale-95 transition-all disabled:opacity-40 disabled:cursor-not-allowed shadow-xs shrink-0 cursor-pointer"
           >
             <Send className="w-4 h-4" />
           </button>

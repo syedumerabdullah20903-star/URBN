@@ -184,7 +184,7 @@ export const CheckoutModal: React.FC = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
       {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/75 backdrop-blur-xs transition-opacity"
@@ -192,21 +192,21 @@ export const CheckoutModal: React.FC = () => {
       />
 
       {/* Modal Dialog */}
-      <div className="relative w-full max-w-4xl bg-white rounded-lg shadow-2xl overflow-hidden z-10 flex flex-col my-auto max-h-[94vh]">
+      <div className="relative w-full max-w-4xl bg-white rounded-t-2xl sm:rounded-lg shadow-2xl overflow-hidden z-10 flex flex-col my-0 sm:my-auto h-[94vh] sm:h-auto sm:max-h-[94vh]">
         
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-neutral-200 bg-white sticky top-0 z-20">
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4 border-b border-neutral-200 bg-white sticky top-0 z-20 shrink-0">
           <div>
-            <span className="text-[11px] font-bold text-neutral-400 uppercase tracking-widest">
+            <span className="text-[10px] sm:text-[11px] font-bold text-neutral-400 uppercase tracking-widest">
               Secure Checkout
             </span>
-            <h2 className="text-xl font-bold uppercase tracking-tight text-neutral-900 font-display">
+            <h2 className="text-lg sm:text-xl font-bold uppercase tracking-tight text-neutral-900 font-display">
               Delivery & Order Confirmation
             </h2>
           </div>
           <button
             onClick={() => setIsCheckoutOpen(false)}
-            className="p-1.5 text-neutral-400 hover:text-black rounded-md hover:bg-neutral-100 transition-colors"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center text-neutral-500 hover:text-black rounded-md hover:bg-neutral-100 transition-colors"
             aria-label="Close checkout"
           >
             <X className="w-5 h-5" />
@@ -247,7 +247,7 @@ export const CheckoutModal: React.FC = () => {
                       if (errors.fullName) setErrors(prev => ({ ...prev, fullName: '' }));
                     }}
                     placeholder="e.g. Muhammad Hamza"
-                    className={`w-full py-2.5 px-3.5 text-xs sm:text-sm bg-white border rounded-md focus:outline-none focus:ring-1 ${
+                    className={`w-full min-h-[44px] py-2.5 px-3.5 text-sm bg-white border rounded-md focus:outline-none focus:ring-1 ${
                       errors.fullName ? 'border-red-500 focus:ring-red-500 bg-red-50/20' : 'border-neutral-300 focus:ring-black'
                     }`}
                   />
@@ -272,7 +272,7 @@ export const CheckoutModal: React.FC = () => {
                         if (errors.phone) setErrors(prev => ({ ...prev, phone: '' }));
                       }}
                       placeholder="0311-1398618"
-                      className={`w-full py-2.5 px-3.5 text-xs sm:text-sm bg-white border rounded-md focus:outline-none focus:ring-1 ${
+                      className={`w-full min-h-[44px] py-2.5 px-3.5 text-sm bg-white border rounded-md focus:outline-none focus:ring-1 ${
                         errors.phone ? 'border-red-500 focus:ring-red-500 bg-red-50/20' : 'border-neutral-300 focus:ring-black'
                       }`}
                     />
@@ -297,7 +297,7 @@ export const CheckoutModal: React.FC = () => {
                         if (errors.email) setErrors(prev => ({ ...prev, email: '' }));
                       }}
                       placeholder="hamza@example.com"
-                      className="w-full py-2.5 px-3.5 text-xs sm:text-sm bg-white border border-neutral-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
+                      className="w-full min-h-[44px] py-2.5 px-3.5 text-sm bg-white border border-neutral-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
                     />
                     {errors.email && (
                       <p className="text-[11px] text-red-600 mt-1">{errors.email}</p>
@@ -317,7 +317,7 @@ export const CheckoutModal: React.FC = () => {
                         setCity(e.target.value);
                         if (errors.city) setErrors(prev => ({ ...prev, city: '' }));
                       }}
-                      className="w-full py-2.5 px-3 text-xs sm:text-sm bg-white border border-neutral-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black cursor-pointer"
+                      className="w-full min-h-[44px] py-2.5 px-3 text-sm bg-white border border-neutral-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black cursor-pointer"
                     >
                       {PAKISTAN_CITIES.map((c) => (
                         <option key={c} value={c}>
@@ -337,7 +337,7 @@ export const CheckoutModal: React.FC = () => {
                         value={customCity}
                         onChange={(e) => setCustomCity(e.target.value)}
                         placeholder="e.g. Mirpur, Kasur, Jhelum"
-                        className="w-full py-2.5 px-3.5 text-xs sm:text-sm bg-white border border-neutral-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
+                        className="w-full min-h-[44px] py-2.5 px-3.5 text-sm bg-white border border-neutral-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
                       />
                     </div>
                   ) : (
@@ -350,7 +350,7 @@ export const CheckoutModal: React.FC = () => {
                         value={postalCode}
                         onChange={(e) => setPostalCode(e.target.value)}
                         placeholder="e.g. 75500"
-                        className="w-full py-2.5 px-3.5 text-xs sm:text-sm bg-white border border-neutral-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
+                        className="w-full min-h-[44px] py-2.5 px-3.5 text-sm bg-white border border-neutral-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
                       />
                     </div>
                   )}
@@ -369,7 +369,7 @@ export const CheckoutModal: React.FC = () => {
                       if (errors.address) setErrors(prev => ({ ...prev, address: '' }));
                     }}
                     placeholder="House/Plot #, Street name, Sector/Block, Nearby Landmark"
-                    className={`w-full py-2.5 px-3.5 text-xs sm:text-sm bg-white border rounded-md focus:outline-none focus:ring-1 ${
+                    className={`w-full min-h-[70px] py-2.5 px-3.5 text-sm bg-white border rounded-md focus:outline-none focus:ring-1 ${
                       errors.address ? 'border-red-500 focus:ring-red-500 bg-red-50/20' : 'border-neutral-300 focus:ring-black'
                     }`}
                   />
@@ -390,7 +390,7 @@ export const CheckoutModal: React.FC = () => {
                     value={notes}
                     onChange={(e) => setNotes(e.target.value)}
                     placeholder="e.g. Deliver before 5 PM, Call upon arrival"
-                    className="w-full py-2 px-3 text-xs bg-white border border-neutral-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
+                    className="w-full min-h-[44px] py-2.5 px-3.5 text-sm bg-white border border-neutral-300 rounded-md focus:outline-none focus:ring-1 focus:ring-black"
                   />
                 </div>
 
@@ -524,7 +524,7 @@ export const CheckoutModal: React.FC = () => {
                   type="button"
                   onClick={handleSubmitOrder}
                   disabled={isSubmitting || cart.length === 0}
-                  className="w-full py-4 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-md text-xs font-bold uppercase tracking-wider transition-colors shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  className="w-full min-h-[50px] py-4 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-md text-xs font-bold uppercase tracking-wider transition-all active:scale-98 shadow-md flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>
